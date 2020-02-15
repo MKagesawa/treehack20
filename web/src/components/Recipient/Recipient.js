@@ -29,6 +29,12 @@ class Recipient extends React.Component {
   };
 
   render() {
+    const coords = this.state.latitude ? (
+      <p>
+        Longitude:{this.state.longitude} Latitude:{this.state.latitude}
+      </p>
+    ) : null;
+
     let display = (
       <div className={styles.Container}>
         <h1>Please Upload a Selfie for Verification</h1>
@@ -43,7 +49,7 @@ class Recipient extends React.Component {
         <br />
         <button onClick={this.getLocation}>Get Your Location</button>
         <br/>
-        {<p>Longitude:{this.state.longitude}  Latitude:{this.state.latitude}</p>}
+        {coords}
         <br/>
         <button onClick={this.toggleShop}>Continue</button>
       </div>
