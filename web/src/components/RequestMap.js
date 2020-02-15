@@ -1,6 +1,6 @@
-// import React from 'react';
-// import '../App.css';
-// import { Map, GoogleApiWrapper } from 'google-maps-react';
+import React from 'react';
+import '../App.css';
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 
 const mapStyles = {
   width: '100%',
