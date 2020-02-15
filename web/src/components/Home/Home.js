@@ -12,7 +12,7 @@ class Home extends React.Component {
           className={styles.RequestMap}
           variant="contained"
           color="primary"
-          href="requestmap"
+          href="donor"
         >
           Donor
         </Button>
