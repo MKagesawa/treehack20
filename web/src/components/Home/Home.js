@@ -18,10 +18,10 @@ class RequestMap extends React.Component {
         </Button>
         <div className={styles.Spacer} />
         <Button
-          className={styles.Donor}
+          className={styles.Recipient}
           variant="contained"
           color="primary"
-          href="donor"
+          href="recipient"
         >
           Recipient
         </Button>

@@ -2,7 +2,7 @@ import React from "react";
 
 class RequestMap extends React.Component {
   render() {
-    return <h1>Inside donor</h1>;
+    return <h1>Inside Recipient</h1>;
   }
 }
 
