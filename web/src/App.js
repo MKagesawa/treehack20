@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
-import RequestMap from './components/RequestMap';
+import RequestMap from './components/RequestMap/RequestMap';
 import Donor from './components/Donor/Donor';
 import Home from './components/Home/Home'
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import '../App.css';
-import styles from './RequestMap.css';
+import '../../App.css';
+import styles from './RequestMap.module.css';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 const mapStyles = {
