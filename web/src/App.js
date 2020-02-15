@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import "./App.css";
 import RequestMap from './components/RequestMap';
-import Donor from './components/Donor';
-import Home from './components/Home'
+import Donor from './components/Donor/Donor';
+import Home from './components/Home/Home'
 
 class App extends Component {
   render() {
