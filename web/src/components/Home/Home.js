@@ -14,7 +14,7 @@ class RequestMap extends React.Component {
           color="primary"
           href="requestmap"
         >
-          Recipient
+          Donor
         </Button>
         <div className={styles.Spacer} />
         <Button
@@ -23,7 +23,7 @@ class RequestMap extends React.Component {
           color="primary"
           href="donor"
         >
-          Donor
+          Recipient
         </Button>
         <div className={styles.Spacer} />
       </div>
