@@ -1,11 +1,14 @@
 import React from 'react';
-import '../../App.css';
 import styles from './RequestMap.module.css';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
+import Button from "@material-ui/core/Button";
+import PrimarySearchAppBar from './PrimarySearchAppBar';
+import DonationCard from './DonationCard';
+
 
 const mapStyles = {
   width: '100%',
-  height: '100%'
+  height: '92%'
 };
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -17,18 +20,20 @@ class RequestMap extends React.Component {
       zoom: 11,
     };
 
+    // Marker Properties and Function
     state = {
       showingInfoWindow: false,  //Hides or the shows the infoWindow
       activeMarker: {},          //Shows the active marker upon click
-      selectedPlace: {}          //Shows the infoWindow to the selected place upon a marker
+      selectedPlace: {},          //Shows the infoWindow to the selected place upon a marker
+      showDonationConfirmation: false
     };
 
     onMarkerClick = (props, marker, e) =>
-    this.setState({
-      selectedPlace: props,
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
+      this.setState({
+        selectedPlace: props,
+        activeMarker: marker,
+        showingInfoWindow: true
+      });
 
     onClose = props => {
       if (this.state.showingInfoWindow) {
@@ -39,8 +44,15 @@ class RequestMap extends React.Component {
       }
     };
 
+    onAddDonationClick = () => 
+      this.setState({
+        showDonationConfirmation: true
+      });
+
     render() {
       return (
+        <div>
+          <PrimarySearchAppBar/>
         <Map
           google={this.props.google}
           zoom={this.props.zoom}
@@ -59,8 +71,8 @@ class RequestMap extends React.Component {
             name={'Request 2'}
             description={'Requesting x many item i'}
           />
+          <DonationCard/>
           <InfoWindow
-            className={styles.InfoBoxWindow}
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
             onClose={this.onClose}
@@ -68,10 +80,15 @@ class RequestMap extends React.Component {
             <div>
               <h2>{this.state.selectedPlace.name}</h2>
               <p>{this.state.selectedPlace.description}</p>
-              <button>Donate</button>
+              <Button
+                onClick={this.onAddDonationClick}
+              >
+                Add Donatation
+              </Button>
             </div>
           </InfoWindow>
         </Map>
+        </div>
     );
   }
 }
