@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import styles from './Home.module.css'
 import Button from "@material-ui/core/Button";
 
-class RequestMap extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <div className={styles.Container}>
@@ -31,4 +31,4 @@ class RequestMap extends React.Component {
   }
 }
 
-export default RequestMap;
+export default Home;
