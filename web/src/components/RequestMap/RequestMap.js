@@ -49,6 +49,14 @@ class RequestMap extends React.Component {
         showDonationConfirmation: true
       });
 
+    onDonationClose = props => {
+        if (this.state.showDonationConfirmation) {
+          this.setState({
+            showingInfoWindow: false,
+          });
+        }
+      };
+
     render() {
       return (
         <div>
@@ -71,7 +79,6 @@ class RequestMap extends React.Component {
             name={'Request 2'}
             description={'Requesting x many item i'}
           />
-          <DonationCard/>
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
@@ -82,6 +89,7 @@ class RequestMap extends React.Component {
               <p>{this.state.selectedPlace.description}</p>
               <Button
                 onClick={this.onAddDonationClick}
+                href="donorsend"
               >
                 Add Donatation
               </Button>
