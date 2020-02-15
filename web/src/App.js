@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Route, NavLink, HashRouter } from "react-router-dom";
+import "./App.css";
+import RequestMap from './components/RequestMap';
+import Donor from './components/Donor';
+import Home from './components/Home'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  render() {
+    return (
+      <HashRouter>
+        <div>
+          <ul className="header">
+            <li>
+              <NavLink to="/requestmap">RequestMap</NavLink>
+            </li>
+            <li>
+              <NavLink to="/donor">Contact</NavLink>
+            </li>
+          </ul>
+          <div className="content">
+              
+            <Route exact path="/" component={Home}/>
+            <Route path="/requestmap" component={RequestMap} />
+            <Route path="/donor" component={Donor} />
+          </div>
+        </div>
+      </HashRouter>
+    );
+  }
 }
 
 export default App;
