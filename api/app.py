@@ -61,9 +61,24 @@ def after_request(response):
     g.db.close()
     return response
 
-@app.route('/requests', methods=['GET'])
+@app.route('/requests', methods=['GET', 'POST'])
+@jwt_required()
 def requests():
-    return jsonify(list(model.Request.select().dicts()))
+    if request.method == 'GET':
+        return jsonify(list(model.Request.select().dicts()))
+
+    body = request.json
+
+    with g.db.atomic():
+        r = model.Request.create(
+            user = current_identity.id,
+            content = body['content'],
+            date = datetime.datetime.now(),
+            geolat = body['geolat'],
+            geolng = body['geolng']
+        )
+
+    return format_data(data=r.id, success=True)
 
 @app.route('/requests/<id>', methods=['GET'])
 def requests_one(id):
@@ -83,7 +98,7 @@ def requests_fulfill(id):
         abort(404, description='no such request with id')
 
     if request.method == 'GET':
-        return format_data(req.fulfill)
+        return format_data(req.fulfilled_by)
 
     with g.db.atomic():
         req.fulfilled_by = current_identity.id
@@ -100,7 +115,7 @@ def requests_receive(id):
         abort(404, description='no such request with id')
 
     if request.method == 'GET':
-        return format_data(req.fulfill)
+        return format_data(req.received_by)
 
     with g.db.atomic():
         req.received_by = current_identity.id
@@ -111,5 +126,4 @@ def requests_receive(id):
 
 # allow running from the command line
 if __name__ == '__main__':
-    #create_tables()
     app.run()
