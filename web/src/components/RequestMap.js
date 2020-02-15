@@ -2,21 +2,26 @@ import React from 'react';
 import '../App.css';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
-const API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+const mapStyles = {
+  width: '100%',
+  height: '100%'
+};
+
+const API_KEY = process.env.REACT_APP_API_KEY;
 
 class RequestMap extends React.Component {
     render() {
       return (
         <Map
           google={this.props.google}
-          zoom={8}
+          zoom={11}
           style={mapStyles}
-          initialCenter={{ lat: 47.444, lng: -122.176}}
+          initialCenter={{ lat: 37.433750, lng: -122.172150}}
         />
     );
   }
 }
 
-export default RequestMap({
-  apiKey: API_KEY 
-})(MapContainer);
+export default GoogleApiWrapper({
+  apiKey: API_KEY
+})(RequestMap);
