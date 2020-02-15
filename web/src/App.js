@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, NavLink, HashRouter } from "react-router-dom";
+import { Route, HashRouter } from "react-router-dom";
 import "./App.css";
 import RequestMap from './components/RequestMap';
 import Donor from './components/Donor';
@@ -10,16 +10,7 @@ class App extends Component {
     return (
       <HashRouter>
         <div>
-          <ul className="header">
-            <li>
-              <NavLink to="/requestmap">RequestMap</NavLink>
-            </li>
-            <li>
-              <NavLink to="/donor">Contact</NavLink>
-            </li>
-          </ul>
-          <div className="content">
-              
+          <div className="content"> 
             <Route exact path="/" component={Home}/>
             <Route path="/requestmap" component={RequestMap} />
             <Route path="/donor" component={Donor} />
