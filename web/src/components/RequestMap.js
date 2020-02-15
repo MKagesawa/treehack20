@@ -5,7 +5,7 @@ import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 const mapStyles = {
   width: '100%',
-  height: '85%'
+  height: '100%'
 };
 
 const API_KEY = process.env.REACT_APP_API_KEY;
