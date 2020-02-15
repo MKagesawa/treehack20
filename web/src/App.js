@@ -9,9 +9,9 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Route exact path="/" component={Home} />
-        <Route path="/requestmap" component={RequestMap} />
-        <Route path="/recipient" component={Recipient} />
+        <Route exact path="/" exact component={Home} />
+        <Route path="/requestmap" exact component={RequestMap} />
+        <Route path="/recipient" exact component={Recipient} />
       </div>
     );
   }
