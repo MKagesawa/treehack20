@@ -5,14 +5,28 @@ import Shop from "../Shop/Shop";
 
 class Recipient extends React.Component {
   state = {
-    showShop: false
+    showShop: false,
+    latitude: null,
+    longitude: null
   };
 
-  getLocation() {}
+  setPosition = position => {
+    this.setState({
+      ...this.state,
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
+    });
+  };
+
+  getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.setPosition);
+    }
+  };
 
   toggleShop = () => {
     this.setState({ showShop: true });
-  }
+  };
 
   render() {
     let display = (
@@ -28,7 +42,9 @@ class Recipient extends React.Component {
         <br />
         <br />
         <button onClick={this.getLocation}>Get Your Location</button>
-        <br />
+        <br/>
+        {<p>Longitude:{this.state.longitude}  Latitude:{this.state.latitude}</p>}
+        <br/>
         <button onClick={this.toggleShop}>Continue</button>
       </div>
     );
