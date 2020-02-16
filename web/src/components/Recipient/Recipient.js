@@ -43,7 +43,8 @@ class Recipient extends React.Component {
     longitude: null,
     image: null,
     url: "",
-    progress: 0
+    progress: 0,
+    verified: false
   };
   doDetection = () => {
     const optionsDetect = getOptions(this.state.url);
@@ -74,29 +75,18 @@ class Recipient extends React.Component {
           }
           let jsonResponse = JSON.stringify(JSON.parse(body), null, "  ");
           console.log("JSON Response\n");
-          console.log(jsonResponse);
-          // const res = JSON.parse(body);
+          if (JSON.parse(body).isIdentical) {
+            this.setState({verified: true});
+          };
         });
+      } else {
+        alert('Could not detect two faces');
       }
     });
   };
 
   callback = url => {
     this.setState({ ...this.state, url: url });
-  };
-
-  setPosition = position => {
-    this.setState({
-      ...this.state,
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude
-    });
-  };
-
-  getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.setPosition);
-    }
   };
 
   toggleShop = () => {
@@ -137,18 +127,19 @@ class Recipient extends React.Component {
   };
 
   render() {
-    const coords = this.state.latitude ? (
-      <p>
-        Longitude:{this.state.longitude} Latitude:{this.state.latitude}
-      </p>
-    ) : null;
+    let cont;
+    if (this.state.verified) {
+      cont = (<button onClick={this.toggleShop}>Continue</button>);
+    } else {
+      cont = (
+        <button onClick={this.toggleShop} disabled={true}>
+          Continue
+        </button>
+      );
+    }
 
     let display = (
       <div className={styles.Container}>
-        <br />
-        <button onClick={this.getLocation}>Get Your Location</button>
-        <br />
-        {coords}
         <br />
         <div className="center">
           <div className="file-field input-field">
@@ -173,7 +164,8 @@ class Recipient extends React.Component {
           />
         </div>
         <button onClick={this.doDetection}>Detection</button>
-        <button onClick={this.toggleShop}>Continue</button>
+        <br />
+        {cont}
       </div>
     );
 
