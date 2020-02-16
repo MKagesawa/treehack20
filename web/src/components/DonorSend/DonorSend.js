@@ -23,7 +23,7 @@ class DonorSend extends React.Component {
       
       <div className={styles.QRCodeWrapper}>
       {/* <img src={qr} alt={"QR Code"} className={styles.QRCode}/>  */}
-      <QRCode className={styles.QRLinkWrapper} value={"http://localhost:3000/4shPJ2f?" + window.location.href.split('?')[1]} />
+      <QRCode className={styles.QRLinkWrapper} value={"http://wuhanmap.tech/4shPJ2f?" + window.location.href.split('?')[1]} />
       </div>
 
       <div className={styles.QRLinkWrapper}>

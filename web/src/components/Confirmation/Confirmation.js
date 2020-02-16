@@ -8,9 +8,15 @@ class Confirmation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      code:""
+      code:"",
+      description:"",
     };
+    this.handleDChange = this.handleDChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleDChange(event) {
+    this.setState({description: event.target.value});
   }
 
   componentDidMount(){
@@ -21,7 +27,7 @@ class Confirmation extends React.Component {
 //http://localhost:3000/4shPJ2f?Code=-M0C4XnIg9fpezA_4deB
   handleSubmit(event){
     var payload = {};
-    payload[this.state.code] = {unfullfilled: false};
+    payload[this.state.code] = {unfullfilled: false, title: "Package Received!", description: this.state.description};
     console.log(payload);
     axios.patch(`https://wuhanmap-83035.firebaseio.com/donation_requests.json`, 
       payload
@@ -36,20 +42,16 @@ class Confirmation extends React.Component {
     console.log(this.state.code);
     return (
       <div className={styles.Container}>
-        <h3>You received relief supplies from John Smith!</h3>
+        <h3>You've received relief supplies! Thanks for scanning the QR Code!</h3>
         <p>Complete the form to report the status of your package. After form submission, you can make another request for relief supplies </p>
         <form onSubmit={this.handleSubmit}>
         <label>
           Code
-          <input type="text" name="Code" />
+          <textarea type="text" name="Code" />
         </label>
         <label>
           Package content description:
-          <input type="text" name="content_desc" />
-        </label>
-        <label>
-          How many items did you receive?
-          <input type="text" name="item_count" />
+          <textarea type="text" name="content_desc" value={this.state.description}  onChange={this.handleDChange}/>
         </label>
         <input type="submit" value="Submit" href="home" />
       </form>

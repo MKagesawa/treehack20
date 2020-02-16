@@ -87,7 +87,7 @@ class RequestMap extends React.Component {
             onClick={this.onMarkerClick}
             name={this.state.donationPoints[donation].title}
             code={donation}
-            visible={this.state.donationPoints[donation].unfullfilled}
+            unfullfilled={this.state.donationPoints[donation].unfullfilled}
             syringe_count={this.state.donationPoints[donation].syringe_count}
             facemask_count={this.state.donationPoints[donation].facemask_count}
             medicine_count={this.state.donationPoints[donation].medicine_count}
@@ -113,10 +113,12 @@ class RequestMap extends React.Component {
           >
             <div>
               <h2>{this.state.selectedPlace.name}</h2>
+              <p>{this.state.selectedPlace.description}</p>
+              <div hidden={!this.state.selectedPlace.unfullfilled}>
               <p>Number of syringe(s) needed  {this.state.selectedPlace.syringe_count}</p>
               <p>Number of facemask(s) needed {this.state.selectedPlace.facemask_count}</p>
               <p>Amount of medicine needed {this.state.selectedPlace.medicine_count}</p>
-              <p>{this.state.selectedPlace.description}</p>
+              
               <Button
                 href={"donorsend?code=" + this.state.selectedPlace.code}
                 className={styles.Upload}
@@ -125,6 +127,7 @@ class RequestMap extends React.Component {
               >
                 Add Donation
               </Button>
+              </div>
             </div>
           </InfoWindow>
         </Map>
