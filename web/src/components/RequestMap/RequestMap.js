@@ -3,7 +3,8 @@ import styles from './RequestMap.module.css';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Button from "@material-ui/core/Button";
 import PrimarySearchAppBar from './PrimarySearchAppBar';
-import DonationCard from './DonationCard';
+import { FirebaseDatabaseProvider, FirebaseDatabaseNode } from "@react-firebase/database";
+import axios from 'axios'
 
 
 const mapStyles = {
@@ -14,18 +15,34 @@ const mapStyles = {
 const API_KEY = process.env.REACT_APP_API_KEY;
 
 class RequestMap extends React.Component {
-    static defaultProps = {
-      center: {lat:37.433750, lng: -122.172150},
-      reqOnePos: {lat:37.433750, lng: -122.19},
-      zoom: 11,
-    };
-
     // Marker Properties and Function
     state = {
       showingInfoWindow: false,  //Hides or the shows the infoWindow
       activeMarker: {},          //Shows the active marker upon click
       selectedPlace: {},          //Shows the infoWindow to the selected place upon a marker
-      showDonationConfirmation: false
+      donationPoints: [],
+      pins: null
+    };
+
+    componentDidMount() {
+      let pins = null;
+      axios.get(`https://wuhanmap-83035.firebaseio.com/donation_requests.json`)
+        .then(res => {
+          const donationPoints = res.data;
+          this.setState({ donationPoints });
+          // console.log(this.state.donationPoints);
+          const pins = this.spawnDonationPins();
+          this.setState({...this.state, pins: pins});
+          console.log('compoennt did mount');
+          console.log(this.state.pins)
+        })
+    }
+
+
+    static defaultProps = {
+      center: {lat:37.433750, lng: -122.172150},
+      reqOnePos: {lat:37.433750, lng: -122.19},
+      zoom: 11,
     };
 
     onMarkerClick = (props, marker, e) =>
@@ -44,20 +61,29 @@ class RequestMap extends React.Component {
       }
     };
 
-    onAddDonationClick = () => 
-      this.setState({
-        showDonationConfirmation: true
-      });
-
-    onDonationClose = props => {
-        if (this.state.showDonationConfirmation) {
-          this.setState({
-            showingInfoWindow: false,
-          });
-        }
-      };
-
+    spawnDonationPins = () => {
+      let pins = [];
+      console.log(this.state.donationPoints);
+      console.log('mapping');
+      this.state.donationPoints.map (
+        x => console.log(x)
+      );
+      //   pins.push(
+      //     <Marker
+      //       position={this.state.donationPoints[donation].coord}
+      //       onClick={this.onMarkerClick}
+      //       name={'Request'}
+      //       description={this.state.donationPoints[donation].description}
+      //     />
+      //   );
+      // )
+      console.log(pins);
+      // this.setState({...this.state, pins: pins});
+      return pins
+    }
+  
     render() {
+
       return (
         <div>
           <PrimarySearchAppBar/>
@@ -67,7 +93,7 @@ class RequestMap extends React.Component {
           style={mapStyles}
           initialCenter={this.props.center}
         >
-          <Marker
+          {/* <Marker
             position={this.props.reqOnePos}
             onClick={this.onMarkerClick}
             name={'Request 1'}
@@ -78,7 +104,10 @@ class RequestMap extends React.Component {
             onClick={this.onMarkerClick}
             name={'Request 2'}
             description={'Requesting x many item i'}
-          />
+          /> */}
+          <div>
+            {this.state.pins}
+          </div>
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
@@ -88,8 +117,10 @@ class RequestMap extends React.Component {
               <h2>{this.state.selectedPlace.name}</h2>
               <p>{this.state.selectedPlace.description}</p>
               <Button
-                onClick={this.onAddDonationClick}
                 href="donorsend"
+                className={styles.Upload}
+                variant="contained"
+                color="primary"
               >
                 Add Donatation
               </Button>
