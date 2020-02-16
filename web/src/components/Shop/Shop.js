@@ -46,22 +46,29 @@ class Shop extends React.Component {
   render() {
     return (
       <div>
-        <h3>Please select aid material to request</h3>
-        <p>Complete the form to indicate quantity of medical materials you require.</p>
+        <h3 className={styles.topHeading}>Please select aid material to request</h3>
+        <p className={styles.topSubheading}>Complete the form to indicate quantity of medical materials you require.</p>
         <form onSubmit={this.handleSubmit}> 
-        <label>
-          Syringe Count:
-          <textarea value={this.state.syringe_count} onChange={this.handleSChange}/>
+
+        <div className={styles.allListItems}>
+        <label className={styles.aListItem}>
+        <p className={styles.subheading}>Number of Syringes needed</p>
+          <textarea value={this.state.syringe_count} onChange={this.handleSChange} className={styles.textArea}/>
         </label>
-        <label>
-          Facemask Count:
-          <textarea value={this.state.facemask_count} onChange={this.handleFChange} />
+        <label className={styles.aListItem}>
+        <p className={styles.subheading}>Number of Facemasks needed</p>
+          <textarea value={this.state.facemask_count} onChange={this.handleFChange} className={styles.textArea}/>
         </label>
-        <label>
-          Medicine Count:
-          <textarea value={this.state.medicine_count}  onChange={this.handleMChange} />
+        <label className={styles.aListItem}>
+        <p className={styles.subheading}>Number of Medicine needed</p>
+          <textarea value={this.state.medicine_count}  onChange={this.handleMChange} className={styles.textArea}/>
         </label>
-        <input type="submit" value="Submit"/>
+        </div>
+
+        <div className={styles.stickyFooter}>
+        <input type="submit" value="Request for supplies" className={styles.submitButton} />
+        </div>
+
       </form>
       </div>
     );

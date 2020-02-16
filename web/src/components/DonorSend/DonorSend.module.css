@@ -67,8 +67,10 @@
 }
 
 .primaryGreenButton{
+	font-family: Roboto;
+	font-weight: 400;
 	background-color: #05B48A !important;
-	color: #05B48A;
+	color: white;
 	height: 53px;
 	width: 166px;
 	font-size: 18px !important;
