@@ -20,7 +20,8 @@ def hash(plaintext):
 
 def authenticate(username, password):
     user = model.User.get_or_none(email=username)
-    if user and safe_str_cmp(user.password.encode('utf-8'), hash(password).encode('utf-8')):
+    #if user and safe_str_cmp(user.password.encode('utf-8'), hash(password).encode('utf-8')):
+    if user and safe_str_cmp(user.password.encode('utf-8'), password.encode('utf-8')):
         return user
 
 def identity(payload):
@@ -39,6 +40,17 @@ jwt = JWT(app, authenticate, identity)
 def resource_not_found(e):
     return jsonify(error=str(e)), 404
 
+def format_data(data=None, success=None):
+    ret = {}
+
+    if data is not None:
+        ret['data'] = data
+
+    if success is not None:
+        ret['success'] = success
+
+    return jsonify(ret)
+
 @app.before_request
 def before_request():
     g.db = model.database
@@ -49,9 +61,24 @@ def after_request(response):
     g.db.close()
     return response
 
-@app.route('/requests', methods=['GET'])
+@app.route('/requests', methods=['GET', 'POST'])
+@jwt_required()
 def requests():
-    return jsonify(list(model.Request.select().dicts()))
+    if request.method == 'GET':
+        return jsonify(list(model.Request.select().dicts()))
+
+    body = request.json
+
+    with g.db.atomic():
+        r = model.Request.create(
+            user = current_identity.id,
+            content = body['content'],
+            date = datetime.datetime.now(),
+            geolat = body['geolat'],
+            geolng = body['geolng']
+        )
+
+    return format_data(data=r.id, success=True)
 
 @app.route('/requests/<id>', methods=['GET'])
 def requests_one(id):
@@ -63,21 +90,40 @@ def requests_one(id):
     return data
 
 @app.route('/requests/<id>/fulfill', methods=['GET', 'POST'])
+@jwt_required()
 def requests_fulfill(id):
     try:
         req = model.Request.get(id=id)
     except model.Request.DoesNotExist as e:
         abort(404, description='no such request with id')
 
+    if request.method == 'GET':
+        return format_data(req.fulfilled_by)
+
     with g.db.atomic():
-        pass
+        req.fulfilled_by = current_identity.id
+        req.save()
+
+    return format_data(None, True)
 
 @app.route('/requests/<id>/receive', methods=['GET', 'POST'])
-def requests_receive():
-    pass
+@jwt_required()
+def requests_receive(id):
+    try:
+        req = model.Request.get(id=id)
+    except model.Request.DoesNotExist as e:
+        abort(404, description='no such request with id')
+
+    if request.method == 'GET':
+        return format_data(req.received_by)
+
+    with g.db.atomic():
+        req.received_by = current_identity.id
+        req.save()
+
+    return format_data(None, True)
 
 
 # allow running from the command line
 if __name__ == '__main__':
-    #create_tables()
     app.run()
