@@ -46,10 +46,6 @@ class Confirmation extends React.Component {
         <p>Complete the form to report the status of your package. After form submission, you can make another request for relief supplies </p>
         <form onSubmit={this.handleSubmit}>
         <label>
-          Code
-          <textarea type="text" name="Code" />
-        </label>
-        <label>
           Package content description:
           <textarea type="text" name="content_desc" value={this.state.description}  onChange={this.handleDChange}/>
         </label>
