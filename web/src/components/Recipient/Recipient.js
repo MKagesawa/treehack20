@@ -77,6 +77,8 @@ class Recipient extends React.Component {
           console.log("JSON Response\n");
           if (JSON.parse(body).isIdentical) {
             this.setState({verified: true});
+          } else {
+            alert('Not the same Person!!')
           };
         });
       } else {
