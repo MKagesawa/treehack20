@@ -1,3 +1,4 @@
+import styles from "./DonorSend.module.css";
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -29,8 +30,7 @@ export default function DonationCard() {
             Your QR Code
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-          We’re here to provide assurance and quality insight in where your packages are going. For tracking, 
-          you will need to print out a unique, security generated one-time QR code and visibly attach it to your packages.
+          We’re here to provide assurance and quality insight in where your packages are going. For tracking, you will need to print out a unique, security generated one-time QR code and visibly attach it to your packages.
           </Typography>
         </CardContent>
       </CardActionArea>

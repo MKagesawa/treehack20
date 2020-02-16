@@ -1,0 +1,80 @@
+@font-face {
+	font-family: 'Roboto', sans-serif;
+	/*src: url("../public/fonts/SF-Pro-Text-Ultralight.otf");*/
+}
+
+body{
+	margin-left: 120px;
+	margin-right: 120px;
+	margin-bottom: 300px;
+}
+
+.topHeading{
+	font-family: Roboto;
+	font-weight: 700;
+	color: black;
+	margin-top: 80px;
+	font-size: 24px;
+}
+
+.topSubheading{
+	font-family: Roboto;
+	font-weight: 400;
+	color: #595959;
+	font-size: 16px;
+	line-height: 1.6;
+	margin-top: -10px;
+}
+
+.subheading {
+	font-family: Roboto;
+	font-weight: 700;
+	color: black;
+	margin-top: 80px;
+	font-size: 16px;
+}
+
+.QRCodeWrapper{
+	display: flex;
+	justify-content: space-around;
+}
+
+.QRCode{
+	margin: 50px 0px;
+	max-width: 160px;
+}
+
+.QRLinkWrapper{
+	display: flex;
+	justify-content: space-around;
+}
+
+.QRLink{
+	margin-top: -20px;
+	color: #05B48A;
+}
+
+.stickyFooter{
+	background-color: white;
+	padding: 40px;
+	display: flex;
+	justify-content: flex-end;
+	border-top: 1px solid #C5C5C5;
+	position: fixed;
+	bottom: 60px;
+	right: 90px;
+	width: 100vw;
+}
+
+.primaryGreenButton{
+	background-color: #05B48A !important;
+	color: #05B48A;
+	height: 53px;
+	width: 166px;
+	font-size: 18px !important;
+	border-radius: 0px !important;
+	box-shadow: none !important;
+	/*float: right;*/
+}
+
+
