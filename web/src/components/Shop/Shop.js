@@ -55,6 +55,7 @@ class Shop extends React.Component {
     })
     .then(function (response) {
       console.log(response);
+      alert("Request made! You should receive updates on your request shortly.")
     })
     .catch(function (error) {
       console.log(error);
