@@ -3,7 +3,6 @@ import styles from './RequestMap.module.css';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Button from "@material-ui/core/Button";
 import PrimarySearchAppBar from './PrimarySearchAppBar';
-import { FirebaseDatabaseProvider, FirebaseDatabaseNode } from "@react-firebase/database";
 import axios from 'axios'
 
 
@@ -31,10 +30,7 @@ class RequestMap extends React.Component {
           const donationPoints = res.data;
           this.setState({ donationPoints });
           // console.log(this.state.donationPoints);
-          const pins = this.spawnDonationPins();
-          this.setState({...this.state, pins: pins});
-          console.log('compoennt did mount');
-          console.log(this.state.pins)
+          console.log(this.state.donationPoints);
         })
     }
 
@@ -63,21 +59,16 @@ class RequestMap extends React.Component {
 
     spawnDonationPins = () => {
       let pins = [];
-      console.log(this.state.donationPoints);
-      console.log('mapping');
-      this.state.donationPoints.map (
-        x => console.log(x)
-      );
-      //   pins.push(
-      //     <Marker
-      //       position={this.state.donationPoints[donation].coord}
-      //       onClick={this.onMarkerClick}
-      //       name={'Request'}
-      //       description={this.state.donationPoints[donation].description}
-      //     />
-      //   );
-      // )
-      console.log(pins);
+      for (const donation in this.state.donationPoints) {
+        pins.push(
+          <Marker
+            position={this.state.donationPoints[donation].coord}
+            onClick={this.onMarkerClick}
+            name={'Request'}
+            description={this.state.donationPoints[donation].description}
+          />
+        );
+      }
       // this.setState({...this.state, pins: pins});
       return pins
     }
