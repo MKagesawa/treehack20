@@ -73,6 +73,7 @@ class RequestMap extends React.Component {
   render() {
     return (
       <div>
+        <PrimarySearchAppBar/>
         <Map
           google={this.props.google}
           zoom={this.props.zoom}
