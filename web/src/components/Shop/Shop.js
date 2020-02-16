@@ -51,7 +51,7 @@ class Shop extends React.Component {
       facemask_count: this.state.facemask_count,
       medicine_count: this.state.medicine_count,
       date: "2020-02-14",
-      unfullfilled: true
+      unfulfilled: true
     })
     .then(function (response) {
       console.log(response);

@@ -10,6 +10,7 @@ class Confirmation extends React.Component {
     this.state = {
       code:"",
       description:"",
+      coord:"",
     };
     this.handleDChange = this.handleDChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,14 +21,19 @@ class Confirmation extends React.Component {
   }
 
   componentDidMount(){
+    axios.get(`https://wuhanmap-83035.firebaseio.com/donation_requests.json`)
+        .then(res => {
+          const coord = res.data[this.state.code].coord;
+          this.setState( {coord});
+        })
     this.setState({
       code: window.location.href.split('?')[1].split('=')[1]
-    });
+    })
   }
 //http://localhost:3000/4shPJ2f?Code=-M0C4XnIg9fpezA_4deB
   handleSubmit(event){
     var payload = {};
-    payload[this.state.code] = {unfullfilled: false, title: "Package Received!", description: this.state.description};
+    payload[this.state.code] = {unfulfilled: false, title: "Package Received!", description: this.state.description, coord: this.state.coord};
     console.log(payload);
     axios.patch(`https://wuhanmap-83035.firebaseio.com/donation_requests.json`, 
       payload
