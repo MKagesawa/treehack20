@@ -3,7 +3,6 @@ import styles from './RequestMap.module.css';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 import Button from "@material-ui/core/Button";
 import PrimarySearchAppBar from './PrimarySearchAppBar';
-import { FirebaseDatabaseProvider, FirebaseDatabaseNode } from "@react-firebase/database";
 import axios from 'axios'
 
 
@@ -65,9 +64,9 @@ class RequestMap extends React.Component {
       let pins = [];
       console.log(this.state.donationPoints);
       console.log('mapping');
-      this.state.donationPoints.map (
-        x => console.log(x)
-      );
+      // this.state.donationPoints.map (
+      //   x => console.log(x)
+      // );
       //   pins.push(
       //     <Marker
       //       position={this.state.donationPoints[donation].coord}
