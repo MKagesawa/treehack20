@@ -47,15 +47,15 @@ class Confirmation extends React.Component {
   render() {
     console.log(this.state.code);
     return (
-      <div className={styles.Container}>
-        <h3>You've received relief supplies! Thanks for scanning the QR Code!</h3>
-        <p>Complete the form to report the status of your package. After form submission, you can make another request for relief supplies </p>
+      <div className={styles.all}>
+        <h3 className={styles.topHeading}>Thanks for scanning the QR Code. You've received relief supplies!</h3>
+        <p className={styles.topSubheading}>Complete the form to report the status of your package. After form submission, you can make another request for relief supplies </p>
         <form onSubmit={this.handleSubmit}>
-        <label>
+        <label classname={styles.description}>
           Package content description:
-          <textarea type="text" name="content_desc" value={this.state.description}  onChange={this.handleDChange}/>
+          <textarea type="text" name="content_desc" value={this.state.description}  onChange={this.handleDChange} className={styles.textfieldStyling}/>
         </label>
-        <input type="submit" value="Submit" href="home" />
+        <input type="submit" value="Submit" href="home" classname={styles.submitButton}/>
       </form>
       </div>
     );

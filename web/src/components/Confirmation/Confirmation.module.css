@@ -1,0 +1,52 @@
+@font-face {
+	font-family: 'Roboto', sans-serif;
+	/*src: url("../public/fonts/SF-Pro-Text-Ultralight.otf");*/
+}
+
+.all{
+    margin-left: 20px;
+    margin-right: 40px;
+}
+
+.topHeading{
+	font-family: Roboto;
+	font-weight: 800;
+	color: black !important;
+    margin-top: 100px !important;
+    margin-left: 30px !important;
+	font-size: 24px;
+}
+
+.topSubheading{
+	font-family: Roboto;
+	font-weight: 400;
+	color: #595959;
+    line-height: 1.5;
+    margin-top: -10px !important;
+    margin-left: 30px !important;
+    font-size: 16px;
+}
+
+.description{
+    font-family: Roboto;
+    font-weight: 400;
+    margin-top: 30px;
+}
+
+.textfieldStyling{
+    width: 100%;
+    border: 2px solid #CCCCCC;
+    border-radius: 3px;
+}
+
+.submitButton{
+    font-family: Roboto;
+	font-weight: 400;
+    background-color: #05B48A !important;
+	color: white;
+	height: 30px;
+	width: 180px;
+	font-size: 14px !important;
+    border-radius: 0px !important;
+	box-shadow: none !important;
+}
