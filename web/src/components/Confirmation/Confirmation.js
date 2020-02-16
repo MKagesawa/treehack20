@@ -39,7 +39,8 @@ class Confirmation extends React.Component {
       payload
     )
     .then((response) => {
-          console.log(response);
+      console.log(response);
+      alert("Package receipt confirmed. Your donor has received your message!");
     });
     event.preventDefault();
   }
