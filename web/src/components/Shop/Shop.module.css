@@ -3,10 +3,10 @@
 	/*src: url("../public/fonts/SF-Pro-Text-Ultralight.otf");*/
 }
 
-body{
+.all{
 	margin-left: 120px;
 	margin-right: 120px;
-	margin-bottom: 300px;
+	margin-bottom: 400px;
 }
 
 .topHeading{
@@ -28,7 +28,12 @@ body{
 
 .allListItems{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    background: lightgray;
+    margin-top: 40px;
+    padding-bottom: 80px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 .aListItem{
@@ -54,10 +59,10 @@ body{
 	display: flex;
 	justify-content: flex-end;
 	border-top: 1px solid #C5C5C5;
-	position: fixed;
-	bottom: 60px;
-	right: 90px;
-	width: 100vw;
+    bottom: 60px;
+    margin-top: 80px;
+	/* right: 90px; */
+	/* width: 100vw; */
 }
 
 .submitButton{

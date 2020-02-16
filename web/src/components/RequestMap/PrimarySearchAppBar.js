@@ -12,6 +12,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import LoyaltyIcon from '@material-ui/icons/Loyalty';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import styles from "./RequestMap.module.css";
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -160,26 +161,28 @@ export default function PrimarySearchAppBar() {
   return (
     <div className={classes.grow}>
       <AppBar position="static">
-        <Toolbar>
-          <IconButton
+        <Toolbar className={styles.barStyling}>
+          {/* <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="open drawer"
           >
             <MenuIcon />
-          </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Hello!
+          </IconButton> */}
+          <Typography className={styles.topHeading} variant="h6" noWrap>
+          Make a donation
+          <p className={styles.topSubheading}>Verified victims of the Coronavius mass outbreak indicated their need for specific critical supplies. You choose</p>
+          <p className={styles.topSubheadingSecondLine}>what to donate, and we alert you where your packages are going.</p>
           </Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 4 new mails" color="inherit">
+            <IconButton aria-label="show 4 new mails" color="black">
               <Badge badgeContent={0} color="secondary">
                 <LoyaltyIcon />
               </Badge>
             </IconButton>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
+            <IconButton aria-label="show 17 new notifications" color="black">
               <Badge badgeContent={0} color="secondary">
                 <NotificationsIcon />
               </Badge>
@@ -190,7 +193,7 @@ export default function PrimarySearchAppBar() {
               aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color="inherit"
+              color="black"
             >
               <AccountCircle />
             </IconButton>

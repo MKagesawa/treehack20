@@ -80,16 +80,18 @@ class Shop extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.all}>
         <h3 className={styles.topHeading}>Please select aid material to request</h3>
         <p className={styles.topSubheading}>Complete the form to indicate quantity of medical materials you require.</p>
         <form onSubmit={this.handleSubmit}> 
         <label>
-          Title:
+        <p className={styles.subheading}>What do you want your request to be called?</p>
           <textarea value={this.state.title} onChange={this.handleTChange}/>
         </label>
+
+        <div className={styles.allListItems}>
         <label>
-          Syringe Count:
+        <p className={styles.subheading}>Number of Syringes needed:</p>
           <textarea value={this.state.syringe_count} onChange={this.handleSChange}/>
         </label>
         <label className={styles.aListItem}>
@@ -100,13 +102,43 @@ class Shop extends React.Component {
         <p className={styles.subheading}>Number of Medicine needed</p>
           <textarea value={this.state.medicine_count}  onChange={this.handleMChange} className={styles.textArea}/>
         </label>
+        </div>
+
         <label>
-          Comment:
+        <p className={styles.subheading}>Any additional notes?</p>
           <textarea value={this.state.comment}  onChange={this.handleCChange} />
         </label>
-        <input type="submit" value="Submit"/>
+        <div className={styles.stickyFooter}>
+        <input type="submit" value="Request these supplies" className={styles.submitButton}/>
+        </div>
       </form>
       </div>
+
+// <h3>Please select aid material to request</h3>
+// <p>Complete the form to indicate quantity of medical materials you require.</p>
+// <form onSubmit={this.handleSubmit}> 
+// <label>
+//   Title:
+//   <textarea value={this.state.title} onChange={this.handleTChange}/>
+// </label>
+// <label>
+//   Syringe Count:
+//   <textarea value={this.state.syringe_count} onChange={this.handleSChange}/>
+// </label>
+// <label>
+//   Facemask Count:
+//   <textarea value={this.state.facemask_count} onChange={this.handleFChange} />
+// </label>
+// <label>
+//   Medicine Count:
+//   <textarea value={this.state.medicine_count}  onChange={this.handleMChange} />
+// </label>
+// <label>
+//   Comment:
+//   <textarea value={this.state.comment}  onChange={this.handleCChange} />
+// </label>
+// <input type="submit" value="Submit"/>
+// </form>
     );
   }
 }

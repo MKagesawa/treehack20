@@ -141,33 +141,45 @@ class Recipient extends React.Component {
     }
 
     let display = (
+      <div className={styles.all}>
+        <h3 className={styles.topHeading}>Let's verify your account.</h3>
+        <p className={styles.topSubheading}>We typically authenticate accounts that are authorized users within a hospital or health facility.</p>
       <div className={styles.Container}>
         <br />
         <div className="center">
           <div className="file-field input-field">
             <div className="btn">
-              <span>File</span>
+              <p className={styles.subheading}>1. Upload an image file of you and your photo ID.</p>
               <input type="file" onChange={this.handleChange} />
             </div>
           </div>
+          <br />
+          <br />
           <button
             onClick={this.handleUpload}
             className="waves-effect waves-light btn"
+            className={styles.submitButton}
           >
-            Upload
+            Upload my image
           </button>
           <br />
           <br />
+          <br />
+          <br />
+          <p className={styles.subheading}>2. We'll use detection on our end to authenticate your account.</p>
           <img
             src={this.state.url || "https://via.placeholder.com/400x300"}
             alt="Uploaded Images"
             height="300"
             width="400"
           />
+          <br />
+          <br />
         </div>
-        <button onClick={this.doDetection}>Detection</button>
+        <button onClick={this.doDetection} className={styles.submitButton}>Authenticate my account</button>
         <br />
         {cont}
+      </div>
       </div>
     );
 

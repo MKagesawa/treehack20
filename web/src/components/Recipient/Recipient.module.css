@@ -1,4 +1,45 @@
+.all{
+	margin-left: 120px;
+	margin-right: 120px;
+	margin-bottom: 300px;
+}
 
+.topHeading{
+	font-family: Roboto;
+	font-weight: 700;
+	color: black;
+	margin-top: 80px;
+	font-size: 24px;
+}
+
+.topSubheading{
+	font-family: Roboto;
+	font-weight: 400;
+	color: #595959;
+	font-size: 16px;
+	line-height: 1.6;
+	margin-top: -10px;
+}
+
+.subheading {
+	font-family: Roboto;
+	font-weight: 700;
+	color: black;
+	margin-top: 0px;
+	font-size: 16px;
+}
+
+.submitButton{
+    font-family: Roboto;
+	font-weight: 400;
+    background-color: #05B48A !important;
+	color: white;
+	height: 30px;
+	width: 180px;
+	font-size: 14px !important;
+    border-radius: 0px !important;
+	box-shadow: none !important;
+}
 
 .Container {
     margin-left: 30px;
