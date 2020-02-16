@@ -19,8 +19,7 @@ class RequestMap extends React.Component {
       showingInfoWindow: false,  //Hides or the shows the infoWindow
       activeMarker: {},          //Shows the active marker upon click
       selectedPlace: {},          //Shows the infoWindow to the selected place upon a marker
-      donationPoints: [],
-      pins: null
+      donationPoints: []
     };
 
     componentDidMount() {
@@ -28,15 +27,11 @@ class RequestMap extends React.Component {
       axios.get(`https://wuhanmap-83035.firebaseio.com/donation_requests.json`)
         .then(res => {
           const donationPoints = res.data;
-          this.setState({ donationPoints });
+          this.setState( {donationPoints});
           // console.log(this.state.donationPoints);
-          const pins = this.spawnDonationPins();
-          this.setState({...this.state, pins: pins});
-          console.log('compoennt did mount');
-          console.log(this.state.pins)
+          console.log(this.state.donationPoints);
         })
     }
-
 
     static defaultProps = {
       center: {lat:37.433750, lng: -122.172150},
@@ -60,26 +55,21 @@ class RequestMap extends React.Component {
       }
     };
 
-    spawnDonationPins = () => {
-      let pins = [];
-      console.log(this.state.donationPoints);
-      console.log('mapping');
-      // this.state.donationPoints.map (
-      //   x => console.log(x)
-      // );
-      //   pins.push(
-      //     <Marker
-      //       position={this.state.donationPoints[donation].coord}
-      //       onClick={this.onMarkerClick}
-      //       name={'Request'}
-      //       description={this.state.donationPoints[donation].description}
-      //     />
-      //   );
-      // )
-      console.log(pins);
-      // this.setState({...this.state, pins: pins});
-      return pins
-    }
+    // spawnDonationPins = () => {
+    //   let pins = [];
+    //   for (const donation in this.state.donationPoints) {
+    //     pins.push(
+    //       <Marker
+    //         position={this.state.donationPoints[donation].coord}
+    //         onClick={this.onMarkerClick}
+    //         name={'Request'}
+    //         description={this.state.donationPoints[donation].description}
+    //       />
+    //     );
+    //   }
+    //   // this.setState({...this.state, pins: pins});
+    //   return pins
+    // }
   
     render() {
 
@@ -92,6 +82,14 @@ class RequestMap extends React.Component {
           style={mapStyles}
           initialCenter={this.props.center}
         >
+          {Object.keys(this.state.donationPoints).map((donation, index) => (
+            <Marker
+            position={this.state.donationPoints[donation].coord}
+            onClick={this.onMarkerClick}
+            name={'Request'}
+            description={this.state.donationPoints[donation].description}
+          />
+          ))}
           {/* <Marker
             position={this.props.reqOnePos}
             onClick={this.onMarkerClick}
@@ -104,9 +102,6 @@ class RequestMap extends React.Component {
             name={'Request 2'}
             description={'Requesting x many item i'}
           /> */}
-          <div>
-            {this.state.pins}
-          </div>
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
