@@ -7,7 +7,7 @@ class Home extends React.Component {
   render() {
     return <React.Fragment>
       <div className={styles.all}>
-      <div className={styles.Container} style={{display: "inline-block", textAlign: "left", width: "40%", marginRight: "5%", marginLeft: "5%"}}>
+      <div className={styles.Container} style={{display: "inline-block", textAlign: "left", width: "45%", marginLeft: "5%"}}>
       <h1 className={styles.topHeading}>Promise</h1>
       <div>
       <p className={styles.topSubheading}>
@@ -32,7 +32,7 @@ class Home extends React.Component {
         </Button>
       </div>
 
-      <div className={styles.Container} style={{display: "inline-block", textAlign: "center", width: "50%"}}>
+      <div className={styles.Container} style={{display: "inline-block", textAlign: "center", width: "55%"}}>
         <img className={styles.imageStyling} src={require('./landing_image.png')} />
       </div>
 
