@@ -21,19 +21,16 @@ export default function DonationCard() {
     <Card className={classes.root}>
       <CardActionArea>
         <CardMedia
-          component="img"
-          alt="Contemplative Reptile"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
+          height="250"
+          title="QR Code"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Lizard
+            Your QR Code
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-            across all continents except Antarctica
+          We’re here to provide assurance and quality insight in where your packages are going. For tracking, 
+          you will need to print out a unique, security generated one-time QR code and visibly attach it to your packages.
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -42,7 +39,7 @@ export default function DonationCard() {
           Share
         </Button>
         <Button size="small" color="primary">
-          Learn More
+          Print
         </Button>
       </CardActions>
     </Card>

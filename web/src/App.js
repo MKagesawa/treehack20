@@ -8,6 +8,7 @@ import Confirmation from './components/Confirmation/Confirmation';
 import DonorSend from './components/DonorSend/DonorSend';
 
 class App extends Component {
+
   render() {
     return (
       <div>
