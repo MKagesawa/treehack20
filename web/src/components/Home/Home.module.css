@@ -1,3 +1,44 @@
+
+.all{
+    align-items: left;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+}
+
+.topHeading{
+	font-family: Roboto;
+	font-weight: 800;
+	color: black !important;
+    margin-top: 100px !important;
+    margin-left: 30px !important;
+	font-size: 70px;
+}
+
+.topSubheading{
+	font-family: Roboto;
+	font-weight: 400;
+	color: #595959;
+    line-height: 1.5;
+    margin-top: -30px !important;
+    margin-left: 30px !important;
+    font-size: 20px;
+}
+
+
+.primaryGreenButton{
+	font-family: Roboto;
+	font-weight: 400;
+	background-color: #05B48A !important;
+	color: white;
+	height: 53px;
+	width: 166px;
+	font-size: 18px !important;
+	border-radius: 0px !important;
+	box-shadow: none !important;
+	/*float: right;*/
+}
+
 .Container {
     margin-top: 10%;
     display: flex;
@@ -7,14 +48,41 @@
 
 .RequestMap {
     flex: 3;
-    height: 300px;
+    margin-top: 30px !important;
+    margin-left: 30px !important;
+    font-family: Roboto;
+	font-weight: 400;
+	background-color: #05B48A !important;
+	color: white !important;
+	height: 53px;
+	width: 220px;
+	font-size: 14px !important;
+	border-radius: 0px !important;
+	box-shadow: none !important;
+	/*float: right;*/
 }
+
 
 .Recipient {
     flex: 3;
-    height: 300px;
+    margin-top: 30px !important;
+    margin-left: 30px !important;
+    font-family: Roboto;
+	font-weight: 400;
+	background-color: #05B48A !important;
+	color: white !important;
+	height: 53px;
+	width: 260px;
+	font-size: 14px !important;
+	border-radius: 0px !important;
+	box-shadow: none !important;
+	/*float: right;*/
 }
 
 .Spacer {
     flex: 1;
+}
+
+.imageStyling{
+    max-width: 600px;
 }
