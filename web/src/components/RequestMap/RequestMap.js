@@ -23,7 +23,6 @@ class RequestMap extends React.Component {
     };
 
     componentDidMount() {
-      let pins = null;
       axios.get(`https://wuhanmap-83035.firebaseio.com/donation_requests.json`)
         .then(res => {
           const donationPoints = res.data;
@@ -86,22 +85,15 @@ class RequestMap extends React.Component {
             <Marker
             position={this.state.donationPoints[donation].coord}
             onClick={this.onMarkerClick}
-            name={'Request'}
+            name={this.state.donationPoints[donation].title}
+            code={donation}
+            unfulfilled={this.state.donationPoints[donation].unfulfilled}
+            syringe_count={this.state.donationPoints[donation].syringe_count}
+            facemask_count={this.state.donationPoints[donation].facemask_count}
+            medicine_count={this.state.donationPoints[donation].medicine_count}
             description={this.state.donationPoints[donation].description}
           />
           ))}
-          {/* <Marker
-            position={this.props.reqOnePos}
-            onClick={this.onMarkerClick}
-            name={'Request 1'}
-            description={'Requesting y many item j'}
-          />
-          <Marker
-            position={{lat:37.433750, lng: -122.17}}
-            onClick={this.onMarkerClick}
-            name={'Request 2'}
-            description={'Requesting x many item i'}
-          /> */}
           <InfoWindow
             marker={this.state.activeMarker}
             visible={this.state.showingInfoWindow}
@@ -110,15 +102,20 @@ class RequestMap extends React.Component {
             <div>
               <h2>{this.state.selectedPlace.name}</h2>
               <p>{this.state.selectedPlace.description}</p>
-              <Button
-                href="donorsend"
-                className={styles.Upload}
-                variant="contained"
-                color="primary"
-              >
-                Add Donatation
-              </Button>
-            </div>
+                <div hidden={!this.state.selectedPlace.unfulfilled}>
+                <p>Number of syringe(s) needed:  {this.state.selectedPlace.syringe_count}</p>
+                <p>Number of facemask(s) needed: {this.state.selectedPlace.facemask_count}</p>
+                <p>Amount of medicine needed: {this.state.selectedPlace.medicine_count}</p>                
+                <Button
+                  href={"donorsend?code=" + this.state.selectedPlace.code}
+                  className={styles.Upload}
+                  variant="contained"
+                  color="primary"
+                >
+                  Add Donation
+                </Button>
+                </div>
+              </div>
           </InfoWindow>
         </Map>
         </div>
