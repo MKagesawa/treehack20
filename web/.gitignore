@@ -67,3 +67,5 @@ node_modules/
 /build/*
 
 /src/cred.js
+
+/src/config/*
