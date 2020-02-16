@@ -34,9 +34,18 @@ class DonorSend extends React.Component {
 
       <p className={styles.subheading}>How does it work?</p>
 
+      <div classname={styles.cardsWrapper}>
+        <br>
+        </br>
       <DonationCard/>
+      <br>
+        </br>
       <DonationCardTwo/>
+      <br>
+        </br>
       <DonationCardThree/>
+      </div>
+
       </div>
 
       <div className={styles.stickyFooter}>

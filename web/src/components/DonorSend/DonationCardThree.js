@@ -26,22 +26,11 @@ export default function DonationCardThree() {
           title="QR Code"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Your QR Code
-          </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-          We’re here to provide assurance and quality insight in where your packages are going. For tracking, you will need to print out a unique, security generated one-time QR code and visibly attach it to your packages.
+          3. Check back for real-time updates on package delivery, as well as how much of the contents were received.
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Print
-        </Button>
-      </CardActions>
     </Card>
   );
 }

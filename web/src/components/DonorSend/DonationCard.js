@@ -26,22 +26,11 @@ export default function DonationCard() {
           title="QR Code"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            Your QR Code
-          </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-          We’re here to provide assurance and quality insight in where your packages are going. For tracking, you will need to print out a unique, security generated one-time QR code and visibly attach it to your packages.
+          1. Securely attach or tape the QR code to your package, and drop it off at any delivery location.
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-        <Button size="small" color="primary">
-          Print
-        </Button>
-      </CardActions>
     </Card>
   );
 }
