@@ -14,7 +14,7 @@ class DonorSend extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.all}>
       <div>
       <h3 className={styles.topHeading}>Thanks for choosing to donate your own packages.</h3>
 
