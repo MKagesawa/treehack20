@@ -1,6 +1,8 @@
 const request = require("request");
 
-const subscriptionKey = "7803f96c67734eaf873e35ddd3b1f668";
+const AZURE_KEY = require("./cred");
+
+const subscriptionKey = AZURE_KEY.AZURE_KEY;
 
 const uriBaseDetect =
   "https://wuhanmaps.cognitiveservices.azure.com/face/v1.0/detect";
