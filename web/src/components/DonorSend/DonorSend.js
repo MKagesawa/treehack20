@@ -3,6 +3,8 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 
 import DonationCard from '../DonorSend/DonationCard';
+import DonationCardTwo from '../DonorSend/DonationCardTwo';
+import DonationCardThree from '../DonorSend/DonationCardThree';
 import qr from '../../assets/img/scan_qr.png';
 import Pdf from '../DonorSend/QRCode.pdf';
 import QRCode from 'qrcode.react'
@@ -33,6 +35,8 @@ class DonorSend extends React.Component {
       <p className={styles.subheading}>How does it work?</p>
 
       <DonationCard/>
+      <DonationCardTwo/>
+      <DonationCardThree/>
       </div>
 
       <div className={styles.stickyFooter}>
