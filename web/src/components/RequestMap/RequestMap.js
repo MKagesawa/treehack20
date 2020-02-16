@@ -84,7 +84,7 @@ class RequestMap extends React.Component {
           style={mapStyles}
           initialCenter={this.props.center}
         >
-          {/* <Marker
+          <Marker
             position={this.props.reqOnePos}
             onClick={this.onMarkerClick}
             name={'Request 1'}
@@ -95,7 +95,7 @@ class RequestMap extends React.Component {
             onClick={this.onMarkerClick}
             name={'Request 2'}
             description={'Requesting x many item i'}
-          /> */}
+          />
           <div>
             {this.state.pins}
           </div>
