@@ -1,0 +1,15 @@
+.Container {
+    margin-top: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.Item {
+    flex: 3;
+    height: 250px;
+}
+
+.Spacer {
+    flex: 1;
+}
