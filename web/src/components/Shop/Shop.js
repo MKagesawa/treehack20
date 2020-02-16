@@ -47,7 +47,11 @@ class Shop extends React.Component {
       title: this.state.title,
       coord: {"lat":this.state.latitude, "lng": this.state.longitude},
       description: this.state.comment,
-      date: "2020-02-14"
+      syringe_count: this.state.syringe_count,
+      facemask_count: this.state.facemask_count,
+      medicine_count: this.state.medicine_count,
+      date: "2020-02-14",
+      unfullfilled: true
     })
     .then(function (response) {
       console.log(response);

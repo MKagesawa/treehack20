@@ -23,7 +23,6 @@ class RequestMap extends React.Component {
     };
 
     componentDidMount() {
-      let pins = null;
       axios.get(`https://wuhanmap-83035.firebaseio.com/donation_requests.json`)
         .then(res => {
           const donationPoints = res.data;
@@ -87,6 +86,11 @@ class RequestMap extends React.Component {
             position={this.state.donationPoints[donation].coord}
             onClick={this.onMarkerClick}
             name={this.state.donationPoints[donation].title}
+            code={donation}
+            visible={this.state.donationPoints[donation].unfullfilled}
+            syringe_count={this.state.donationPoints[donation].syringe_count}
+            facemask_count={this.state.donationPoints[donation].facemask_count}
+            medicine_count={this.state.donationPoints[donation].medicine_count}
             description={this.state.donationPoints[donation].description}
           />
           ))}
@@ -109,14 +113,17 @@ class RequestMap extends React.Component {
           >
             <div>
               <h2>{this.state.selectedPlace.name}</h2>
+              <p>Number of syringe(s) needed  {this.state.selectedPlace.syringe_count}</p>
+              <p>Number of facemask(s) needed {this.state.selectedPlace.facemask_count}</p>
+              <p>Amount of medicine needed {this.state.selectedPlace.medicine_count}</p>
               <p>{this.state.selectedPlace.description}</p>
               <Button
-                href="donorsend"
+                href={"donorsend?code=" + this.state.selectedPlace.code}
                 className={styles.Upload}
                 variant="contained"
                 color="primary"
               >
-                Add Donatation
+                Add Donation
               </Button>
             </div>
           </InfoWindow>
