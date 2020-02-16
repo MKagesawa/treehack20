@@ -33,7 +33,7 @@ class RequestMap extends React.Component {
   }
 
   static defaultProps = {
-    center: { lat: 37.43375, lng: -122.17215 },
+    center: { lat: 30.5928, lng: 114.3055 },
     reqOnePos: { lat: 37.43375, lng: -122.19 },
     zoom: 11
   };
