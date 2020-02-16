@@ -86,7 +86,7 @@ class RequestMap extends React.Component {
             <Marker
             position={this.state.donationPoints[donation].coord}
             onClick={this.onMarkerClick}
-            name={'Request'}
+            name={this.state.donationPoints[donation].title}
             description={this.state.donationPoints[donation].description}
           />
           ))}
