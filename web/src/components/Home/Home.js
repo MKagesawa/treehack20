@@ -5,9 +5,12 @@ import Button from "@material-ui/core/Button";
 
 class Home extends React.Component {
   render() {
-    return (
-      <div className={styles.Container}>
-        <div className={styles.Spacer} />
+    return <React.Fragment>
+      <div className={styles.Container} style={{display: "inline-block", textAlign: "center", width: "40%", marginRight: "5%", marginLeft: "5%"}}>
+      <h1>The standard Lorem Ipsum passage, used since the 1500s</h1>
+      <div>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      </div>
         <Button
           className={styles.RequestMap}
           variant="contained"
@@ -16,7 +19,6 @@ class Home extends React.Component {
         >
           Donor
         </Button>
-        <div className={styles.Spacer} />
         <Button
           className={styles.Recipient}
           variant="contained"
@@ -25,9 +27,11 @@ class Home extends React.Component {
         >
           Recipient
         </Button>
-        <div className={styles.Spacer} />
       </div>
-    );
+      <div className={styles.Container} style={{display: "inline-block", textAlign: "center", width: "50%"}}>
+        <img src="https://ichef.bbci.co.uk/news/208/cpsprodpb/ABDF/production/_110899934_frantic_976-nc.png" style={{width: "100%"}}/>
+      </div>
+    </React.Fragment>;
   }
 }
 
