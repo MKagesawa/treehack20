@@ -47,6 +47,7 @@ class Recipient extends React.Component {
     verified: false
   };
   doDetection = () => {
+    this.setState({ verified: false });
     const optionsDetect = getOptions(this.state.url);
     request.post(optionsDetect, (error, response, body) => {
       if (error) {
@@ -75,14 +76,20 @@ class Recipient extends React.Component {
           }
           let jsonResponse = JSON.stringify(JSON.parse(body), null, "  ");
           console.log("JSON Response\n");
+          console.log(JSON.parse(body));
           if (JSON.parse(body).isIdentical) {
-            this.setState({verified: true});
+            alert(
+              "Verified!! Confidence: " + JSON.parse(body).confidence
+            );
+            this.setState({ verified: true });
           } else {
-            alert('Not the same Person!!')
-          };
+            alert(
+              "Not the same Person!! Confidence: " + JSON.parse(body).confidence
+            );
+          }
         });
       } else {
-        alert('Could not detect two faces');
+        alert("Could not detect two faces");
       }
     });
   };
@@ -131,7 +138,7 @@ class Recipient extends React.Component {
   render() {
     let cont;
     if (this.state.verified) {
-      cont = (<button onClick={this.toggleShop}>Continue</button>);
+      cont = <button onClick={this.toggleShop}>Continue</button>;
     } else {
       cont = (
         <button onClick={this.toggleShop} disabled={true}>
@@ -143,43 +150,52 @@ class Recipient extends React.Component {
     let display = (
       <div className={styles.all}>
         <h3 className={styles.topHeading}>Let's verify your account.</h3>
-        <p className={styles.topSubheading}>We typically authenticate accounts that are authorized users within a hospital or health facility.</p>
-      <div className={styles.Container}>
-        <br />
-        <div className="center">
-          <div className="file-field input-field">
-            <div className="btn">
-              <p className={styles.subheading}>1. Upload an image file of you and your photo ID.</p>
-              <input type="file" onChange={this.handleChange} />
+        <p className={styles.topSubheading}>
+          We typically authenticate accounts that are authorized users within a
+          hospital or health facility.
+        </p>
+        <div className={styles.Container}>
+          <br />
+          <div className="center">
+            <div className="file-field input-field">
+              <div className="btn">
+                <p className={styles.subheading}>
+                  1. Upload an image file of you and your photo ID.
+                </p>
+                <input type="file" onChange={this.handleChange} />
+              </div>
             </div>
+            <br />
+            <br />
+            <button
+              onClick={this.handleUpload}
+              className="waves-effect waves-light btn"
+              className={styles.submitButton}
+            >
+              Upload my image
+            </button>
+            <br />
+            <br />
+            <br />
+            <br />
+            <p className={styles.subheading}>
+              2. We'll use detection on our end to authenticate your account.
+            </p>
+            <img
+              src={this.state.url || "https://via.placeholder.com/400x300"}
+              alt="Uploaded Images"
+              height="300"
+              width="400"
+            />
+            <br />
+            <br />
           </div>
-          <br />
-          <br />
-          <button
-            onClick={this.handleUpload}
-            className="waves-effect waves-light btn"
-            className={styles.submitButton}
-          >
-            Upload my image
+          <button onClick={this.doDetection} className={styles.submitButton}>
+            Authenticate my account
           </button>
           <br />
-          <br />
-          <br />
-          <br />
-          <p className={styles.subheading}>2. We'll use detection on our end to authenticate your account.</p>
-          <img
-            src={this.state.url || "https://via.placeholder.com/400x300"}
-            alt="Uploaded Images"
-            height="300"
-            width="400"
-          />
-          <br />
-          <br />
+          {cont}
         </div>
-        <button onClick={this.doDetection} className={styles.submitButton}>Authenticate my account</button>
-        <br />
-        {cont}
-      </div>
       </div>
     );
 
