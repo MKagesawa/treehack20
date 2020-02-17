@@ -45,7 +45,7 @@ class Shop extends React.Component {
   handleSubmit(event) {
     axios.post(`https://wuhanmap-83035.firebaseio.com/donation_requests.json`, {
       title: this.state.title,
-      coord: {"lat":30.533230, "lng": 114.349517},
+      coord: {"lat":this.state.latitude, "lng": this.state.longitude},
       description: this.state.comment,
       syringe_count: this.state.syringe_count,
       facemask_count: this.state.facemask_count,

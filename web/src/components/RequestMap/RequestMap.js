@@ -18,7 +18,9 @@ class RequestMap extends React.Component {
     showingInfoWindow: false, //Hides or the shows the infoWindow
     activeMarker: {}, //Shows the active marker upon click
     selectedPlace: {}, //Shows the infoWindow to the selected place upon a marker
-    donationPoints: []
+    donationPoints: [],
+    starting_lat: 0,
+    starting_lng: 0
   };
 
   componentDidMount() {
@@ -31,12 +33,6 @@ class RequestMap extends React.Component {
         console.log(this.state.donationPoints);
       });
   }
-
-  static defaultProps = {
-    center: { lat: 30.5928, lng: 114.3055 },
-    reqOnePos: { lat: 37.43375, lng: -122.19 },
-    zoom: 11
-  };
 
   onMarkerClick = (props, marker, e) =>
     this.setState({
@@ -54,31 +50,36 @@ class RequestMap extends React.Component {
     }
   };
 
-  // spawnDonationPins = () => {
-  //   let pins = [];
-  //   for (const donation in this.state.donationPoints) {
-  //     pins.push(
-  //       <Marker
-  //         position={this.state.donationPoints[donation].coord}
-  //         onClick={this.onMarkerClick}
-  //         name={'Request'}
-  //         description={this.state.donationPoints[donation].description}
-  //       />
-  //     );
-  //   }
-  //   // this.setState({...this.state, pins: pins});
-  //   return pins
-  // }
+  setPosition = position => {
+    this.setState({
+      ...this.state,
+      starting_lat: position.coords.latitude,
+      starting_lng: position.coords.longitude
+    });
+    const center = {
+      lat: position.coords.latitude,
+      lng: position.coords.longitude
+    };
+    return center
+  };
+
+  getLocation = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.setPosition);
+    }
+  };
 
   render() {
+    const center = this.getLocation();
+    const zoom = 11
     return (
       <div>
-        <PrimarySearchAppBar/>
+        <PrimarySearchAppBar />
         <Map
           google={this.props.google}
-          zoom={this.props.zoom}
+          zoom={zoom}
           style={mapStyles}
-          initialCenter={this.props.center}
+          initialCenter={center}
         >
           {Object.keys(this.state.donationPoints).map((donation, index) => (
             <Marker
